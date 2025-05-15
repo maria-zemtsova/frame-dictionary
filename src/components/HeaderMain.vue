@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import SearchComponent from './SearchComponent.vue'
 
 interface navItem {
   id: number
@@ -23,6 +24,7 @@ const navItems = ref<navItem[]>([
           <a class="header__link" :href="item.path">{{ item.title }}</a>
         </li>
       </ul>
+      <SearchComponent class="header__link" />
     </nav>
   </header>
 </template>
@@ -31,13 +33,19 @@ const navItems = ref<navItem[]>([
 $text: #2c3e50;
 $green: #42b883;
 .header {
-  max-width: 1280px;
   min-height: 150px;
-  padding-left: 77px;
-  padding-right: 277px;
+  margin-bottom: 60px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 300px;
+
+  &__nav {
+    width: 490px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &__list {
     height: 100%;
@@ -53,6 +61,7 @@ $green: #42b883;
     color: inherit;
     position: relative;
     transition: color 0.4s;
+    font-size: 20px;
   }
 
   &__link:hover {
