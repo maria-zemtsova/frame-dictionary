@@ -4,6 +4,7 @@ import HeaderMain from './components/HeaderMain.vue'
 import IntroComponent from './components/IntroComponent.vue'
 import FrameList from './components/FrameList.vue'
 import InstructionComponent from './components/InstructionComponent.vue'
+import TeamComponent from '../src/components/TeamComponent.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import InstructionComponent from './components/InstructionComponent.vue'
   <IntroComponent />
   <InstructionComponent />
   <FrameList />
+  <TeamComponent />
 </template>
 
 <style scoped></style>
