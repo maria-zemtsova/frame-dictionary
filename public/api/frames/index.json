@@ -1,0 +1,149 @@
+{
+  "frames": [
+    {
+      "id": 1,
+      "path": "/src/assets/frames/work.svg",
+      "title": "Профессиональная деятельность",
+      "slug": "not-found"
+    },
+    {
+      "id": 2,
+      "path": "/src/assets/frames/trade.svg",
+      "title": "Сфера услуг",
+      "slug": "not-found"
+    },
+    {
+      "id": 3,
+      "path": "/src/assets/frames/policy.svg",
+      "title": "Политическая сфера",
+      "slug": "not-found"
+    },
+    {
+      "id": 4,
+      "path": "/src/assets/frames/map.svg",
+      "title": "Посещение",
+      "slug": "not-found"
+    },
+    {
+      "id": 5,
+      "path": "/src/assets/frames/emotions.svg",
+      "title": "Эмоциональное взаимодействие",
+      "slug": "not-found"
+    },
+    {
+      "id": 6,
+      "path": "/src/assets/frames/communication.svg",
+      "title": "Общение",
+      "slug": "not-found"
+    },
+    {
+      "id": 7,
+      "path": "/src/assets/frames/approval.svg",
+      "title": "Одобрение",
+      "slug": "not-found"
+    },
+    {
+      "id": 8,
+      "path": "/src/assets/frames/ban.svg",
+      "title": "Разрешение и запрет",
+      "slug": "not-found"
+    },
+    {
+      "id": 9,
+      "path": "/src/assets/frames/economy.svg",
+      "title": "Экономическая сфера",
+      "slug": "not-found"
+    },
+    {
+      "id": 10,
+      "path": "/src/assets/frames/negative.svg",
+      "title": "Негативное физическое и психическое воздействие",
+      "slug": "not-found"
+    },
+    {
+      "id": 11,
+      "path": "/src/assets/frames/hand-holding-heart.svg",
+      "title": "Помощь и поддержка",
+      "slug": "not-found"
+    },
+    {
+      "id": 12,
+      "path": "/src/assets/frames/gift.svg",
+      "title": "Предоставление,наделение, дарение",
+      "slug": "not-found"
+    },
+    {
+      "id": 13,
+      "path": "/src/assets/frames/conflict.svg",
+      "title": "Конфликт",
+
+      "slug": "not-found"
+    },
+    {
+      "id": 14,
+      "path": "/src/assets/frames/love.svg",
+      "title": "Любовные отношения",
+      "slug": "not-found"
+    },
+    {
+      "id": 15,
+      "path": "/src/assets/frames/law.svg",
+      "title": "Нарушение закона и наказание",
+      "slug": "law-violation"
+    },
+    {
+      "id": 16,
+      "path": "/src/assets/frames/cooperation.svg",
+      "title": "Сотрудничество",
+      "slug": "not-found"
+    },
+    {
+      "id": 17,
+      "path": "/src/assets/frames/school.svg",
+      "title": "Образование и воспитание",
+      "slug": "not-found"
+    },
+    {
+      "id": 18,
+      "path": "/src/assets/frames/compulsion.svg",
+      "title": "Принуждение",
+      "slug": "not-found"
+    },
+    {
+      "id": 19,
+      "path": "/src/assets/frames/family.svg",
+      "title": "Семья и забота",
+      "slug": "not-found"
+    },
+    {
+      "id": 20,
+      "path": "/src/assets/frames/rivalry.svg",
+      "title": "Соперничество",
+      "slug": "not-found"
+    },
+    {
+      " id": 21,
+      "path": "/src/assets/frames/disconnection.svg",
+      "title": "Разделение, разъединение, разобщение",
+      "slug": "not-found"
+    },
+    {
+      "id": 22,
+      "path": "/src/assets/frames/false.svg",
+      "title": "Обман и подстрекательство",
+      "slug": "not-found"
+    },
+    {
+      "id": 23,
+      "path": "/src/assets/frames/ask.svg",
+      "title": "Просьба",
+      "slug": "not-found"
+    },
+    {
+      "id": 24,
+      "path": "/src/assets/frames/suggestion.svg",
+      "title": "Внушение и побуждение",
+      "slug": "not-found"
+    }
+  ]
+}

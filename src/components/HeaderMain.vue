@@ -9,19 +9,23 @@ interface navItem {
 }
 
 const navItems = ref<navItem[]>([
-  { id: 1, title: 'Команда', path: '/team' },
-  { id: 2, title: 'О нас', path: '/about' },
-  { id: 3, title: 'Фреймы', path: '/frames' },
+  { id: 1, title: 'Главная', path: '/' },
+  { id: 2, title: 'Источники', path: '/sources' },
 ])
 </script>
 
 <template>
   <header class="header">
-    <img class="header__logo" src="../assets/logo.svg" alt="Логотип" />
+    <router-link class="header__logo" to="/">
+      <img src="../assets/logo.svg" alt="Логотип" />
+    </router-link>
     <nav class="header__nav">
       <ul class="header__list">
         <li class="header__item" v-for="item in navItems" :key="item.id">
-          <a class="header__link" :href="item.path">{{ item.title }}</a>
+          <router-link class="header__link" :to="item.path">{{ item.title }}</router-link>
+        </li>
+        <li class="header__item">
+          <a class="header__link" href="/#frames">Фреймы</a>
         </li>
       </ul>
       <SearchComponent class="header__link" />
@@ -38,10 +42,11 @@ $green: #42b883;
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 300px;
+  align-items: center;
+  gap: 250px;
 
   &__nav {
-    width: 490px;
+    width: 560px;
     display: flex;
     justify-content: space-between;
     align-items: center;

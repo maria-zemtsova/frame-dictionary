@@ -16,7 +16,7 @@
         лингвистических исследований до преподавания, но основное применение словаря — изучение
         русского языка как иностранного, русской этнокультуры.
       </p>
-      <img src="" alt="Изображение для блока интро" width="200" height="200" />
+      <img src="/src/assets/image_2025-06-02_14-19-57.png" alt="Логотип ТГУ" />
     </div>
   </section>
 </template>
@@ -26,12 +26,13 @@
   font-family: 'Inter', serif;
   &__title {
     font-weight: bold;
-    width: 1000px;
+    // width: 1000px;
     margin: 0 auto;
     text-align: center;
     text-transform: uppercase;
     line-height: 120%;
-    font-size: 24px;
+    font-size: 60px;
+    color: #2c3e50;
   }
 
   &__title span {
@@ -52,8 +53,8 @@
     padding-bottom: 60px;
     padding-left: 100px;
     padding-right: 100px;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url(../assets/bg.png);
+    // background-image:
+    //   linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7)), url(../assets/bg.png);
     max-width: 100%;
     min-height: 200px;
     font-family: 'Roboto', sans-serif;

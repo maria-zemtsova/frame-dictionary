@@ -1,0 +1,11 @@
+{
+  "participants": [
+    {
+      "title": "Правонарушитель",
+      "slug": "law-violation",
+      "description": "Лицо, совершающее противоправное действие",
+      "frameTitle": "Нарушение закона и наказание",
+      "path": "/frames/law-violation"
+    }
+  ]
+}

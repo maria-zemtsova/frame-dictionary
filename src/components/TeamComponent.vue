@@ -28,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="team">
+  <div class="team" id="team">
     <Carousel :items-to-show="5" :wrap-around="true" :autoplay="3000" :transition="500">
       <Slide v-for="member in teamMembers" :key="member.id">
         <div class="team__item">
@@ -47,16 +47,19 @@ onMounted(() => {
 
 <style lang="scss">
 .carousel__slide {
-  margin-left: 50px;
+  margin-left: 25px;
 }
 .team {
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+  margin-bottom: 120px;
+  margin-top: 120px;
 
   &__item {
-    text-align: center;
-    padding: 50px;
+    color: #2c3e50;
+    font-family: 'Roboto', sans-serif;
+    padding: 25px;
   }
 
   &__photo {
@@ -66,10 +69,12 @@ onMounted(() => {
     margin: 0 auto 20px;
   }
 
+  &__name {
+    font-size: 25px;
+  }
+
   &__role {
-    font-size: 1.2em;
-    color: #333;
-    font-weight: 500;
+    font-size: 20px;
   }
 }
 </style>

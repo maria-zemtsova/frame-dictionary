@@ -1,71 +1,129 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 
-interface frameItem {
+interface FrameItem {
   id: number
   path: string
   title: string
+  slug: string
 }
 
-const frameItems = ref<frameItem[]>([
-  { id: 1, path: '/src/assets/frames/work.svg', title: 'Профессиональная деятельность' },
-  { id: 2, path: '/src/assets/frames/trade.svg', title: 'Сфера услуг' },
-  { id: 3, path: '/src/assets/frames/policy.svg', title: 'Политическая сфера' },
-  { id: 4, path: '/src/assets/frames/map.svg', title: 'Посещение' },
-  { id: 5, path: '/src/assets/frames/emotions.svg', title: 'Эмоциональное взаимодействие' },
-  { id: 6, path: '/src/assets/frames/communication.svg', title: 'Общение' },
-  { id: 7, path: '/src/assets/frames/approval.svg', title: 'Одобрение' },
-  { id: 8, path: '/src/assets/frames/ban.svg', title: 'Разрешение и запрет' },
-  { id: 9, path: '/src/assets/frames/economy.svg', title: 'Экономическая сфера' },
-  {
-    id: 10,
-    path: '/src/assets/frames/negative.svg',
-    title: 'Негативное физическое и психическое воздействие',
-  },
-  {
-    id: 11,
-    path: '/src/assets/frames/hand-holding-heart.svg',
-    title: 'Помощь и поддержка',
-  },
-  { id: 12, path: '/src/assets/frames/gift.svg', title: 'Предоставление,наделение, дарение' },
-  { id: 13, path: '/src/assets/frames/conflict.svg', title: 'Конфликт' },
-  { id: 14, path: '/src/assets/frames/love.svg', title: 'Любовные отношения' },
-  { id: 15, path: '/src/assets/frames/law.svg', title: 'Нарушение закона и наказание' },
-  { id: 16, path: '/src/assets/frames/cooperation.svg', title: 'Сотрудничество' },
-  { id: 17, path: '/src/assets/frames/school.svg', title: 'Образование и воспитание' },
-  { id: 18, path: '/src/assets/frames/compulsion.svg', title: 'Принуждение' },
-  { id: 19, path: '/src/assets/frames/family.svg', title: 'Семья и забота' },
-  { id: 20, path: '/src/assets/frames/.svg', title: 'Профессиональная деятельность' },
-  { id: 21, path: '/src/assets/frames/.svg', title: 'Профессиональная деятельность' },
-  { id: 22, path: '/src/assets/frames/.svg', title: 'Профессиональная деятельность' },
-  { id: 23, path: '/src/assets/frames/.svg', title: 'Профессиональная деятельность' },
-  { id: 24, path: '/src/assets/frames/.svg', title: 'Профессиональная деятельность' },
-])
+const router = useRouter()
+const frameItems = ref<FrameItem[]>([])
+const isLoading = ref(true)
+const error = ref<string | null>(null)
+
+// Загрузка данных фреймов
+const loadFrames = async () => {
+  try {
+    // Проверяем кеш
+    const cacheKey = 'frames-cache'
+    const cachedData = localStorage.getItem(cacheKey)
+
+    if (cachedData) {
+      frameItems.value = JSON.parse(cachedData)
+      isLoading.value = false
+    }
+
+    // Делаем запрос через Axios
+    const response = await axios.get('/api/frames/index.json')
+
+    // Сохраняем в кеш
+    frameItems.value = response.data.frames
+    localStorage.setItem(cacheKey, JSON.stringify(response.data.frames))
+
+    // Проверяем обновления (если нужно)
+    await checkForUpdates()
+  } catch (err) {
+    error.value = 'Не удалось загрузить список фреймов'
+    console.error('Error loading frames:', err)
+  } finally {
+    isLoading.value = false
+  }
+}
+
+// Проверка обновлений на сервере
+const checkForUpdates = async () => {
+  try {
+    const response = await axios.get('/api/frames/index.json', {
+      params: {
+        lastUpdate: true,
+        _: new Date().getTime(), // Добавляем timestamp чтобы избежать кеширования
+      },
+      headers: {
+        'Cache-Control': 'no-cache',
+      },
+    })
+
+    const serverLastUpdated = response.data.lastUpdated
+    const localLastUpdated = localStorage.getItem('frames-last-updated')
+
+    if (!localLastUpdated || new Date(serverLastUpdated) > new Date(localLastUpdated)) {
+      // Если есть обновления, перезагружаем данные
+      const freshResponse = await axios.get('/api/frames/index.json')
+      frameItems.value = freshResponse.data.frames
+      localStorage.setItem('frames-cache', JSON.stringify(freshResponse.data.frames))
+      localStorage.setItem('frames-last-updated', serverLastUpdated)
+    }
+  } catch (err) {
+    console.error('Update check failed:', err)
+  }
+}
+
+const navigateToFrame = (slug: string) => {
+  router.push({
+    name: 'frame',
+    params: { frameSlug: slug },
+  })
+}
+
+onMounted(() => {
+  loadFrames()
+})
 </script>
 
 <template>
-  <section class="frames">
+  <section class="frames" id="frames">
     <div>
       <h2 class="frames__title">список фреймов</h2>
       <p class="frames__description">Выберете фрейм, который хотите изучать</p>
     </div>
-    <ul class="frames__list">
+
+    <div v-if="isLoading" class="loading">
+      <div class="spinner"></div>
+      <span>Загрузка фреймов...</span>
+    </div>
+
+    <div v-else-if="error" class="error">
+      {{ error }}
+      <button @click="loadFrames" class="retry-button">Повторить попытку</button>
+    </div>
+
+    <ul v-else class="frames__list">
       <li class="frames__item" v-for="item in frameItems" :key="item.id">
-        <a class="frames__link" href="#">
-          <img class="frames__icon" :src="item.path" :alt="item.title" :title="item.title" />
-        </a>
+        <button class="frames__link" @click="navigateToFrame(item.slug)">
+          <img
+            class="frames__icon"
+            :src="item.path"
+            :alt="item.title"
+            :title="item.title"
+            loading="lazy"
+          />
+        </button>
       </li>
     </ul>
   </section>
 </template>
-
 <style lang="scss">
 .frames {
   display: flex;
   gap: 61px;
   justify-content: center;
   align-items: center;
-  margin-top: 70px;
+  margin-bottom: 120px;
+  margin-top: 120px;
 
   div {
     text-align: center;
@@ -101,6 +159,7 @@ const frameItems = ref<frameItem[]>([
     width: 100px;
     height: 100px;
     background-color: #f5f5f5;
+
     border-radius: 10px;
   }
 
@@ -110,6 +169,9 @@ const frameItems = ref<frameItem[]>([
     align-items: center; /* Вертикальное центрирование */
     width: 100%; /* Занимает всю ширину родителя */
     height: 100%;
+    border-color: transparent;
+    border-width: 0;
+    border-radius: 10px;
   }
 
   &__icon {

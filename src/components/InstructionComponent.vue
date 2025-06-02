@@ -56,10 +56,12 @@
 
 <style lang="scss">
 .instruction {
-  margin-top: 60px;
+  margin-bottom: 120px;
+  margin-top: 120px;
   &__title {
     padding-bottom: 60px;
     font-family: 'Inter', serif;
+    font-size: 36px;
     font-weight: bold;
     width: 100%;
     margin: 0 auto;
@@ -112,6 +114,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-family: 'Inter', serif;
+    margin-bottom: 5px;
   }
 
   &__description p {
@@ -121,9 +124,21 @@
 }
 
 .highlight {
+  position: relative;
+  border-radius: 10px;
   padding: 5px;
-  border: 1px solid;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to left, #42b983, #647eff);
+  background: white;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 11px;
+    background: linear-gradient(to left, #42b983, #647eff);
+    z-index: -1;
+  }
 }
 </style>
