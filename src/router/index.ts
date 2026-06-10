@@ -1,5 +1,8 @@
+import HomePage from '@/views/HomePage.vue'
+import FramePage from '@/views/FramePage.vue'
+import NotFound from '@/views/NotFound.vue'
+import SourcesComponent from '@/components/SourcesComponent.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,15 +10,30 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomePage,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/frames/:frameSlug',
+      name: 'frame',
+      component: FramePage,
+      props: true,
+    },
+    {
+      path: '/frames/:frameSlug/:subframeSlug',
+      name: 'subframe',
+      component: FramePage,
+      props: true,
+    },
+    // Общий fallback для 404
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFound,
+    },
+    {
+      path: '/sources',
+      name: 'sources',
+      component: SourcesComponent,
     },
   ],
 })

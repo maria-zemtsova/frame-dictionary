@@ -1,0 +1,11 @@
+{
+  "actions": [
+    {
+      "title": "Украсть",
+      "slug": "law-violation",
+      "description": "Незаконное завладение чужим имуществом",
+      "frameTitle": "Нарушение закона и наказание",
+      "path": "/frames/law-violation"
+    }
+  ]
+}
